@@ -4,8 +4,7 @@ import React, { useState, useEffect, useMemo, useCallback } from 'react';
 // Import initialized services from the new config file
 import { db as firestoreDb, auth as firebaseAuth } from '../../firebase/config';
 import {
-  collection, doc, onSnapshot, setDoc, deleteDoc, query, serverTimestamp,
-  Firestore, Timestamp, FieldValue
+  collection, doc, onSnapshot, setDoc, deleteDoc, query, serverTimestamp, Timestamp, FieldValue
 } from 'firebase/firestore';
 import { onAuthStateChanged, signInAnonymously } from 'firebase/auth';
 
@@ -91,6 +90,7 @@ function AppPage() {
     if (!firestoreDb) return null;
     // Use public path for a collaborative Todo list
     return collection(firestoreDb, 'artifacts', appId, 'public', 'data', 'todos');
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [firestoreDb, appId]);
 
 
@@ -119,6 +119,7 @@ function AppPage() {
     });
 
     return () => unsubscribeSnapshot();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [firestoreDb, userId, getTodosCollectionRef]);
 
 
