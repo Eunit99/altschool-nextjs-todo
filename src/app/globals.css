@@ -1,0 +1,61 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background: linear-gradient(135deg, #F8F8FF 0%, #E6E6FA 100%);
+  color: #2F4F4F;
+  min-height: 100vh;
+  padding: 1.5rem;
+  margin: 0;
+}
+.bubble-business { background-color: #708090; box-shadow: 0px 0px 6px rgba(112, 128, 144, 0.8); }
+.bubble-personal { background-color: #B87333; box-shadow: 0px 0px 6px rgba(184, 115, 51, 0.8); }
+.bubble {
+  width: 20px;
+  height: 20px;
+  border-radius: 9999px;
+  transition: 200ms ease-in-out;
+  border: 2px solid transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.bubble::after {
+  content: "";
+  display: block;
+  opacity: 0;
+  width: 0;
+  height: 0;
+  background-color: #F5F5F5;
+  border-radius: 9999px;
+  transition: 200ms ease-in-out;
+}
+input[type="radio"]:checked ~ .bubble::after,
+input[type="checkbox"]:checked ~ .bubble::after {
+  width: 10px;
+  height: 10px;
+  opacity: 1;
+}
+.todo-item.done .todo-content input {
+  text-decoration: line-through;
+  opacity: 0.5;
+}
